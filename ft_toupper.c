@@ -6,14 +6,13 @@
 /*   By: asouchet <asouchet@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 11:18:03 by asouchet          #+#    #+#             */
-/*   Updated: 2022/09/11 11:18:08 by asouchet         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:14:22 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
-    if (c <= 97 && c <= 122)
-        c = c + 48;
-    return (c);
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
 }

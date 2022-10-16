@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <asouchet@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/13 11:30:58 by asouchet          #+#    #+#             */
-/*   Updated: 2022/09/10 21:43:53 by asouchet         ###   ########.fr       */
+/*   Created: 2022/08/13 11:30:26 by asouchet          #+#    #+#             */
+/*   Updated: 2022/09/10 16:18:21 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	if (src < dest)
+	if (dest == 0 && src == 0)
+		return (0);
+	while (i < n)
 	{
-		i = n;
-		while (i > 0)
-		{
-			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-			i--;
-		}
-	}
-	else
-	{
-		while (i < n)
-		{
-			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-			i++;
-		}
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
 	}
 	return (dest);
 }
@@ -41,9 +32,10 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 int	main(int ac, char **av)
 {
 	(void) ac;
-	unsigned char	test[20] = malloc(sizeof(unsigned char) * 10);
-
-	ft_memmove(&test[3], test, atoi(av[1]));
+	unsigned char *test = malloc(sizeof(unsigned char) * 10);
+	if (!test)
+		return (0);
+	ft_memcpy(test, av[1], atoi(av[2]));
 	printf ("%s\n", test);
 	return (0);
 }*/

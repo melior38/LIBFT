@@ -1,39 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <asouchet@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/13 11:30:26 by asouchet          #+#    #+#             */
-/*   Updated: 2022/09/10 16:18:21 by asouchet         ###   ########.fr       */
+/*   Created: 2022/08/17 20:53:43 by asouchet          #+#    #+#             */
+/*   Updated: 2022/08/17 21:21:27 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stddef.h>
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
+	j = 0;
 	while (i < n)
 	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		i++;
+		if (s1[i] == s2[j] && (s1[i] && s2[i]))
+		{
+			i++;
+			j++;
+		}
+		else
+			return ((unsigned char)s1[i] - (unsigned char)s2[j]);
 	}
-	return (dest);
+	return (0);
 }
 /*
-int	main(int ac, char **av)
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ag, char **av)
 {
-	(void) ac;
-	unsigned char *test = malloc(sizeof(unsigned char) * 10);
-	if (!test)
-		return (0);
-	ft_memcpy(test, av[1], atoi(av[2]));
-	printf ("%s\n", test);
+
+	(void) ag;
+	printf("%d\n", ft_strncmp(av[1], av[2], atoi(av[3])));
+	printf("%d\n", strncmp(av[1], av[2], atoi(av[3])));
 	return (0);
 }*/

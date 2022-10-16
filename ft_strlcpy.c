@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   strlcpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <asouchet@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 20:53:43 by asouchet          #+#    #+#             */
-/*   Updated: 2022/08/17 21:21:27 by asouchet         ###   ########.fr       */
+/*   Created: 2022/08/13 11:31:32 by asouchet          #+#    #+#             */
+/*   Updated: 2022/08/13 11:43:17 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stddef.h>
-
-int	ft_strncmp(char *s1, char *s2, size_t n)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (i < n)
-	{
-		if (s1[i] == s2[j] && (s1[i] && s2[i]))
-		{
-			i++;
-			j++;
-		}
-		else
-			return (s1[i] - s2[j]);
-	}
-	return (0);
-}
-/*
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
-int	main(int ag, char **av)
+size_t	ft_strlcpy(char *dest, const char *src, size_t n)
 {
+	size_t	i;
 
-	(void) ag;
-	printf("%d\n", ft_strncmp(av[1], av[2], atoi(av[3])));
-	printf("%d\n", strncmp(av[1], av[2], atoi(av[3])));
-	return (0);
-}*/
+	i = 0;
+	if (n != 0)
+	{
+		while (src[i] && (n - 1) > i)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (ft_strlen(src));
+}

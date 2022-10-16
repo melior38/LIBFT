@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcpy.c                                          :+:      :+:    :+:   */
+/*   ft_tolwer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <asouchet@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/13 11:31:32 by asouchet          #+#    #+#             */
-/*   Updated: 2022/08/13 11:43:17 by asouchet         ###   ########.fr       */
+/*   Created: 2022/09/11 11:18:56 by asouchet          #+#    #+#             */
+/*   Updated: 2022/10/12 14:36:05 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft.h"
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t n)
+int	ft_tolower(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (ft_strlen((char *)src + n));
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }
