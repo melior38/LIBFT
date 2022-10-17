@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouchet <asouchet@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/11 11:19:48 by asouchet          #+#    #+#             */
-/*   Updated: 2022/09/11 11:19:50 by asouchet         ###   ########.fr       */
+/*   Created: 2022/10/17 14:34:56 by asouchet          #+#    #+#             */
+/*   Updated: 2022/10/17 14:34:58 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stddef.h>
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	void	*str;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	str = (void *)malloc(count * size);
-	if (!str)
+	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (n == 0)
 		return (0);
-	ft_bzero(str, count * size);
-	return (str);
+	while (i < n && str1[i] == str2[i])
+		i++;
+	if (n == i)
+		i--;
+	return (str1[i] - str2[i]);
 }
