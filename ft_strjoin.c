@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 14:35:17 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/17 14:35:19 by asouchet         ###   ########.fr       */
+/*   Created: 2022/10/18 16:55:38 by asouchet          #+#    #+#             */
+/*   Updated: 2022/10/18 16:55:41 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include "libft.h"
-// alloue un nouveau start sur une string const char. 
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -22,22 +21,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	j = 0;
-	if (ft_strlen(s) <= start)
-		return (ft_strdup(""));
-	if (len >= ft_strlen(s))
-		len = ft_strlen(s) - start;
-	res = (char *)malloc(sizeof(*s) * (len + 1));
+	res = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
 		return (0);
-	while (s[i])
+	while (i < ft_strlen(s1))
 	{
-		if (j < len && i >= start)
-		{
-			res[j] = s[i];
-			j++;
-		}
+		res[i] = s1[i];
 		i++;
 	}
-	res[j] = '\0';
+	while (j < ft_strlen(s2))
+	{
+		res[i] = s2[j];
+		j++;
+		i++;
+	}
+	res[i] = '\0';
 	return (res);
 }

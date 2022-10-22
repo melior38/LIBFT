@@ -25,10 +25,12 @@ char	*ft_strchr(const char *s, int c)
 		return (&str[ft_strlen(str)]);
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (str[i] == (char)c)
 			return (&str[i]);
 		i++;
 	}
+	if (str[i] == (char)c)
+		return (&str[i]);
 	return (0);
 }
 
