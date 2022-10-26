@@ -17,6 +17,7 @@
 int	ft_digit_count(int nb)
 {
 	size_t	count;
+
 	count = 0;
 	if (nb == -2147483648)
 	{
@@ -38,77 +39,57 @@ int	ft_digit_count(int nb)
 	return (count);
 }
 
-char	*ft_itoa(int nb)
+char	*ft_tab_fill(int n, char *str)
 {
-	char *str;
-	long	n;
-	int		i;
+	int	i;
 
-	n = nb;
 	i = ft_digit_count(n);
-	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	str[i--] = '\0';
-	if (n == 0)
-	{
-		str[0] = 48;
-		return (str);
-	}
+	i = i - 1;
 	if (n < 0)
 	{
 		str[0] = '-';
 		n = n * -1;
 	}
-	while (n > 0)
+	while (n >= 10)
 	{
-		str[i] = 48 + (n % 10);
+		str[i] = (48 + (n % 10));
 		n = n / 10;
 		i--;
 	}
+	if (n < 10)
+		str[i] = (n + 48);
 	return (str);
 }
 
-/*
+char	*ft_min_int(char *str)
+{
+	str[0] = '-';
+	str[1] = '2';
+	str[2] = '1';
+	str[3] = '4';
+	str[4] = '7';
+	str[5] = '4';
+	str[6] = '8';
+	str[7] = '3';
+	str[8] = '6';
+	str[9] = '4';
+	str[10] = '8';
+	str[11] = '\0';
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*res;
 	int		i;
-	long	nb;
 
-	nb = n;
 	i = ft_digit_count(n);
-	if (!(res = (char *)malloc(sizeof(char) * (i + 1))))
+	res = ft_calloc(sizeof(char), (i + 1));
+	if (!res)
 		return (0);
-	res[i--] = '\0';
-	if (nb == 0)
-	{
-		res[0] = 48;
-		return (res);
-	}
-	if (nb < 0)
-	{
-		res[0] = '-';
-		nb = nb * -1;
-	}
-	while (nb > 0)
-	{
-		res[i] = 48 + (n % 10);
-		nb = nb / 10;
-		i--;
-	}
+	if (n != -2147483648)
+		ft_tab_fill(n, res);
+	else
+		ft_min_int(res);
 	return (res);
-}*/
-/*
-if (nb == -2147483648)
-	{
-		res[0] = '-';
-		res[1] = '2';
-		nb = 147483648; 
-	}
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	(void)	ac;
-	printf("%d", ft_digit_count(atoi(av[1])));
-	return (0);
-}*/
+}
