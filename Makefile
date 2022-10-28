@@ -53,8 +53,7 @@ B_SRCS	:= ft_lstnew.c \
 	ft_lstadd_front.c \
 	ft_lstdelone.c \
 	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c
+	ft_lstiter.c 
 
 OBJS	:= $(SRCS:.c=.o)
 B_OBJS	:= $(B_SRCS:.c=.o)
