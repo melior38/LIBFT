@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:55:38 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/18 16:55:41 by asouchet         ###   ########.fr       */
+/*   Created: 2022/10/27 18:57:02 by asouchet          #+#    #+#             */
+/*   Updated: 2022/10/27 18:57:04 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stddef.h>
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-	size_t	j;
-	char	*res;
-
-	i = 0;
-	j = 0;
-	res = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!res)
-		return (0);
-	while (i < ft_strlen(s1))
+	if (!f)
+		return ;
+	while (lst)
 	{
-		res[i] = s1[i];
-		i++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	while (j < ft_strlen(s2))
-	{
-		res[i] = s2[j];
-		j++;
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
 }

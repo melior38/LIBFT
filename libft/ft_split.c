@@ -26,7 +26,7 @@ size_t	ft_sep_check(char s, char sep)
 	return (0);
 }
 
-size_t	ft_strlen_until_sep(char const *s, char sep)
+size_t	ft_len_til_sep(char const *s, char sep)
 {
 	size_t	i;
 
@@ -43,32 +43,47 @@ size_t	ft_count_sep(char const *s, char sep)
 
 	i = 0;
 	words = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (s[i] == sep)
+			while (ft_sep_check(s[i], sep))
+				i++;
+		else
 		{
-		while (ft_sep_check(s[i], sep))
-			i++;
+			words++;
+			while (s[i] && !ft_sep_check(s[i], sep))
+				i++;
 		}
-		words++;
-		i++;
 	}
-	return (i - words);
+	return (words);
 }
 
+//char	*ft_substr(char const *s, unsigned int start, size_t len)
 
-/*
 char	**ft_split(char const *s, char sep)
 {
+	char	**res;
+	size_t	i;
+	size_t	j;
 
-
-}*/
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	(void) ac;
-
-	printf("%zu", ft_count_sep(av[1], av[2][0]));
-	return (0);
+	i = 0;
+	j = 0;
+	res = malloc(sizeof(char *) * (ft_count_sep(s, sep) + 1));
+	if (!res)
+		return (0);
+	while (i < ft_count_sep(s, sep))
+	{
+		if (s[j] == sep)
+			while (ft_sep_check(s[j], sep))
+				j++;
+		else
+		{
+			res[i] = ft_substr(s, (unsigned int)j, ft_len_til_sep(&s[j], sep));
+			while (s[j] && !ft_sep_check(s[j], sep))
+				j++;
+			i++;
+		}
+	}
+	res[i] = NULL;
+	return (res);
 }
-

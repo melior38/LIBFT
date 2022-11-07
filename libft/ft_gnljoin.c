@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_gnljoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:55:38 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/18 16:55:41 by asouchet         ###   ########.fr       */
+/*   Created: 2022/11/03 10:05:06 by asouchet          #+#    #+#             */
+/*   Updated: 2022/11/03 10:05:11 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stddef.h>
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_gnljoin(char *buffer, char *stash)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*res;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	res = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!buffer)
+		buffer = ft_calloc(sizeof(char ), 1);
+	if (!buffer || !stash)
+		return (NULL);
+	res = ft_calloc(sizeof(char ), (ft_strlen(buffer) + ft_strlen(stash) + 1));
 	if (!res)
-		return (0);
-	while (i < ft_strlen(s1))
+		return (NULL);
+	if (buffer)
 	{
-		res[i] = s1[i];
-		i++;
+		while (buffer[++i])
+			res[i] = buffer[i];
 	}
-	while (j < ft_strlen(s2))
+	while (stash[j])
 	{
-		res[i] = s2[j];
-		j++;
-		i++;
+		res[i++] = stash[j++];
 	}
-	res[i] = '\0';
+	free(buffer);
 	return (res);
 }

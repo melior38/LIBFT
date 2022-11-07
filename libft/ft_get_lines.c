@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_get_lines.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:55:38 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/18 16:55:41 by asouchet         ###   ########.fr       */
+/*   Created: 2022/11/03 10:10:08 by asouchet          #+#    #+#             */
+/*   Updated: 2022/11/03 10:10:11 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stddef.h>
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_get_lines(char	*buffer)
 {
 	size_t	i;
-	size_t	j;
-	char	*res;
+	size_t	l;
+	char	*line;
 
 	i = 0;
-	j = 0;
-	res = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!res)
-		return (0);
-	while (i < ft_strlen(s1))
-	{
-		res[i] = s1[i];
+	l = 0;
+	if (!buffer)
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	}
-	while (j < ft_strlen(s2))
-	{
-		res[i] = s2[j];
-		j++;
+	if (buffer[i] == '\n')
 		i++;
+	line = malloc(sizeof(char ) * (i + 1));
+	while (i > l)
+	{
+		line[l] = buffer[l];
+		l++;
 	}
-	res[i] = '\0';
-	return (res);
+	line[l] = '\0';
+	return (line);
 }

@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:55:38 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/18 16:55:41 by asouchet         ###   ########.fr       */
+/*   Created: 2022/11/03 10:11:01 by asouchet          #+#    #+#             */
+/*   Updated: 2022/11/03 10:11:50 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stddef.h>
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*get_next_line(int fd)
 {
-	size_t	i;
-	size_t	j;
-	char	*res;
+	static char	*buffer;
+	char		*line;
+	int			error;
 
-	i = 0;
-	j = 0;
-	res = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!res)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	while (i < ft_strlen(s1))
+	error = ft_read_till_sep(fd, &buffer);
+	if (!buffer)
+		return (NULL);
+	if (error == -1)
+		return (ft_free(&buffer));
+	if (error == 0)
 	{
-		res[i] = s1[i];
-		i++;
+		line = ft_get_lines(buffer);
+		ft_free(&buffer);
+		if (line[0])
+			return (line);
+		free(line);
+		return (NULL);
 	}
-	while (j < ft_strlen(s2))
-	{
-		res[i] = s2[j];
-		j++;
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
+	line = ft_get_lines(buffer);
+	buffer = ft_new_buffer_start(buffer);
+	return (line);
 }

@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:55:38 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/18 16:55:41 by asouchet         ###   ########.fr       */
+/*   Created: 2022/10/27 14:34:39 by asouchet          #+#    #+#             */
+/*   Updated: 2022/10/27 14:34:41 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stddef.h>
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
-	size_t	j;
-	char	*res;
+	int	i;
 
 	i = 0;
-	j = 0;
-	res = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!res)
-		return (0);
-	while (i < ft_strlen(s1))
+	while (lst)
 	{
-		res[i] = s1[i];
 		i++;
+		lst = lst->next;
 	}
-	while (j < ft_strlen(s2))
-	{
-		res[i] = s2[j];
-		j++;
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
+	return (i);
 }
+
+/* 	tant que lst n'est pas egal a NULL je continue d'attribuer a ma 
+	lst la valeur de lst->next qui pointe vers null */
