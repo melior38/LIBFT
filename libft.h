@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: asouchet <asouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:14:25 by asouchet          #+#    #+#             */
-/*   Updated: 2022/10/26 16:16:10 by asouchet         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:19:44 by asouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stddef.h>
+# include <stdlib.h>
+# include <sys/types.h> //ssize_t library
+# include <unistd.h>
+# include <stdarg.h>
+
+# ifndef FD_SIZE
+#  define FD_SIZE 4096
+# endif
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 typedef struct s_list
 {
@@ -69,5 +82,28 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+// gnl
+char	*ft_new_buffer_start(char *buffer);
+char	*ft_gnljoin(char *buffer, char *stash);
+char	*ft_get_lines(char	*buffer);
+char	*ft_free(char **buffer);
+int		ft_read_till_sep(int fd, char **buffer);
+char	*get_next_line(int fd);
+char	*get_next_line_bonus(int fd);
+
+// printf
+
+int				ft_putnbr_modified(int nb);
+int				ft_putchar_modified(char c);
+int				ft_putstr_modified(const char *str);
+int				ft_printstr(const char *str);
+int				ft_print_percent(void);
+int				ft_printf(const char *str, ...);
+unsigned int	ft_unsigned_putnbr_modified(unsigned int nb);
+int				ft_find_forms(va_list args, const char form);
+int				ft_putnbr_p(unsigned long long ptr);
+int				ft_putnbr_h_m(unsigned long long nb);
+int				ft_putnbr_h_x(unsigned long long nb);
 
 #endif

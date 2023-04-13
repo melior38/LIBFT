@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asouchet <marvin@42lausanne.ch>            +#+  +:+       +#+         #
+#    By: asouchet <asouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/16 19:13:44 by asouchet          #+#    #+#              #
-#    Updated: 2022/10/26 16:18:11 by asouchet         ###   ########.fr        #
+#    Updated: 2023/04/13 13:23:47 by asouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,18 @@ SRCS	:= ft_isalnum.c \
 	ft_putchar_fd.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
-	ft_putstr_fd.c
+	ft_putstr_fd.c \
+	ft_free.c \
+	ft_new_buffer_start.c \
+	ft_get_lines.c \
+	ft_read_till_sep.c \
+	ft_gnljoin.c \
+	get_next_line_bonus.c \
+	get_next_line.c \
+	ft_printf.c \
+	ft_print_nbr.c \
+	ft_printf_utils.c
+	
 B_SRCS	:= ft_lstnew.c \
 	ft_lstsize.c \
 	ft_lstlast.c \
